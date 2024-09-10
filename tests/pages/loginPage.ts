@@ -1,5 +1,5 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import * as dotenv from 'dotenv';
+import { faker } from '@faker-js/faker';
 import CommonActions from '../../actions/commonActions.ts';
 
 export class LoginPage {

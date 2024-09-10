@@ -10,12 +10,23 @@ test.describe('Test suite 01', () => {
     const loginPage = new LoginPage(page);
     const dashboardPage = new DashboardPage(page);
 
+
     await loginPage.goto();
     await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`)
     await expect(page.getByRole('heading', { name: 'Tester Hotel Overview' })).toBeVisible();
     await dashboardPage.performLogout();
     await expect(page.getByRole('heading', { name: 'Login' })).toBeVisible();
     await page.waitForTimeout(5000);
+
+
+    test('should create a room with random data', async ({ page }) => {
+      const createRoomPage = new CreateRoomPage(page);
+      // Navigate to the Create Room page
+      await page.goto('http://localhost:3000/room/new');
+
+      // Fill out the form with random data
+      await createRoomPage.fillOutCreateRoomsForm();
+    });
   });
 });
 
