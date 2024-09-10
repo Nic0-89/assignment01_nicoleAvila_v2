@@ -8,13 +8,16 @@ export class LoginPage {
   readonly usernameTextfield: Locator; 
   readonly passwordTextfield: Locator;
   readonly loginButton: Locator;
+  readonly errorMessage: Locator;
+
 
   //Const
   constructor(page: Page) {
     this.page = page;
     this.usernameTextfield = page.locator('input[type="text"]');
     this.passwordTextfield = page.locator('input[type="password"]');
-    this.loginButton = page.getByRole('button', { name: 'Login' });    
+    this.loginButton = page.getByRole('button', { name: 'Login' });
+    this.errorMessage = page.getByText('Bad username or password');    
   }
 
   // Methods / functions
