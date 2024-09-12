@@ -20,7 +20,7 @@ export class DashboardPage {
     this.logoutButton = page.getByRole('button', { name: 'Logout' });
 
   }
-
+//Go to all the different section in the dashboard
   async goToRooms() {
     await this.roomButton.click();
   }

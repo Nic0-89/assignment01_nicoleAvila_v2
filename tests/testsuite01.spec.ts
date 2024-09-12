@@ -9,23 +9,21 @@ import { CreateReservPage } from './pages/createReservPage.ts';
 
 
 test.describe('Test suite 01', () => {
-//   test('Test case 01', async ({ page }) => { ////The page object is provided by Playwright and represents a browser page.
-//     const loginPage = new LoginPage(page); // Creates an instance of the LoginPage class, passing the page object to it. This instance allows you to use methods defined in the LoginPage class to interact with the login page.
-//     const dashboardPage = new DashboardPage(page);
+  test('Test case 01', async ({ page }) => { ////The page object is provided by Playwright and represents a browser page.
+    const loginPage = new LoginPage(page); // Creates an instance of the LoginPage class, passing the page object to it. This instance allows you to use methods defined in the LoginPage class to interact with the login page.
+    const dashboardPage = new DashboardPage(page);
 
-//     //navigate to login page
-//     await loginPage.goto();
-//     //perform the loging
-//     await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`)
-//     await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
-//     await dashboardPage.performLogout();
-//     await expect(page.getByRole('heading', { name: 'Login' })).toBeVisible();
-//     await page.waitForTimeout(5000);
-//   });
+    //navigate to login page
+    await loginPage.goto();
+    //perform the loging
+    await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`)
+    await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
+    await dashboardPage.performLogout();
+    await expect(page.getByRole('heading', { name: 'Login' })).toBeVisible();
+    await page.waitForTimeout(5000);
+  });
 
-  //async getErrorMessage(): Promise<Locator> {
-  //   return this.page.getByText('Bad username or password');
-  // }
+
 
   test('should create a room with random data', async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -39,7 +37,7 @@ test.describe('Test suite 01', () => {
     await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
     // Navigate to the Create Room page
     await dashboardPage.goToRooms();
-  
+
     await page.waitForTimeout(2000);
     await newRoomPage.pageRoomButton();
 
@@ -59,30 +57,60 @@ test.describe('Test suite 01', () => {
     await dashboardPage.performLogout();
 
   });
+  //FROM HERE ON I NEED TO CHECK
+  test('Create a new client', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    const dashboardPage = new DashboardPage(page);
+    const newClientPage = new CreateClientPage(page);
 
-  // test('another test case', async ({ page }) => {
+    //navigate to login page
+    await loginPage.goto();
+    //perform the loging
+    await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`);
+    await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
+    // Navigate to the Create Room page
+    await dashboardPage.goToClients();
 
-  // });
-  // test('another test case 1', async ({ page }) => {
+    await page.waitForTimeout(2000);
+  });
 
-  // });
-  // test('another test case 2', async ({ page }) => {
+  test('Create a new Bill', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    const dashboardPage = new DashboardPage(page);
+    const createBill = new CreateBillPage(page);
 
-  // });
-  // test('another test case 3', async ({ page }) => {
+    //navigate to login page
+    await loginPage.goto();
+    //perform the loging
+    await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`);
+    await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
+    // Navigate to the Create Room page
+    await dashboardPage.goToClients();
 
-  // });
+    await page.waitForTimeout(2000);
+  });
+
+  test('Create a new reservation', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    const dashboardPage = new DashboardPage(page);
+    const newReservation = new CreateReservPage(page);
+
+    //navigate to login page
+    await loginPage.goto();
+    //perform the loging
+    await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`);
+    await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
+    // Navigate to the Create Room page
+    await dashboardPage.goToClients();
+
+    await page.waitForTimeout(2000);
+  });
 });
 
 
+// test('another test case 3', async ({ page }) => {
 
-
-
-
-
-
-
-
+// });
 
 // test('has title', async ({ page }) => {
 //   await page.goto('https://playwright.dev/');
@@ -99,4 +127,4 @@ test.describe('Test suite 01', () => {
 
 //   // Expects page to have a heading with the name of Installation.
 //   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-// });
+
