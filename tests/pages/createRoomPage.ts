@@ -18,11 +18,11 @@ export class CreateRoomPage {
   constructor(page: Page) {
     this.page = page;
     this.selectElement = page.getByRole('combobox'); //Use the select element
-    this.numberInput = page.getByLabel('Number');
-    this.floorInput = page.getByLabel('Floor');
-    this.availableCheckBox.getByRole('checkbox', { name: 'Available' })
+    this.numberInput = page.locator('input[type="number"]');//page.getByLabel('Number'); 
+    this.floorInput = page.getByLabel('Floor');//page.locator('div').filter({ hasText: /^Floor$/ }).getByRole('spinbutton');
+    this.availableCheckBox = page.getByRole('checkbox', { name: 'Available' })
     this.priceInput = page.getByLabel('Price');
-    this.selectFeature = page.getByRole('listbox');
+    this.selectFeature = page.getByRole('listbox');// page.getByRole('listbox').selectOption
     this.saveButton = page.getByRole('button', { name: 'Save' });
     this.backButton = page.getByRole('button', { name: 'Back' });
     //Add the missing attributes
@@ -36,7 +36,7 @@ export class CreateRoomPage {
 //     //Add the missing elements that are to be filled out in the form. Think about using e.g. fakerjs
 //   }
 // }
-  // random data
+  // Methods to use on this page
   async fillOutCreateRoomsForm() {
     // select a room type at random
     const roomTypes = ['Double', 'Single', 'Twin'];
@@ -70,3 +70,25 @@ export class CreateRoomPage {
   }
 
 }
+
+
+// await page.getByRole('link', { name: 'Create Room' }).click();
+// await page.getByRole('combobox').selectOption('single');
+// await page.locator('div').filter({ hasText: /^Number$/ }).getByRole('spinbutton').click();
+// await page.locator('div').filter({ hasText: /^Number$/ }).getByRole('spinbutton').click({
+//   clickCount: 3
+// });
+// await page.locator('div').filter({ hasText: /^Number$/ }).getByRole('spinbutton').fill('102');
+// await page.locator('div').filter({ hasText: /^Floor$/ }).getByRole('spinbutton').click();
+// await page.locator('div').filter({ hasText: /^Floor$/ }).getByRole('spinbutton').fill('1');
+// await page.locator('.checkbox').click();
+// await page.locator('div').filter({ hasText: /^Price$/ }).getByRole('spinbutton').click();
+// await page.locator('div').filter({ hasText: /^Price$/ }).getByRole('spinbutton').fill('1500');
+// await page.getByRole('listbox').selectOption('balcony');
+// await page.getByRole('listbox').selectOption(['balcony', 'sea_view']);
+// await page.getByRole('listbox').selectOption(['balcony', 'sea_view', 'penthouse']);
+// await page.getByText('Save').click();
+
+
+// await page.getByRole('button', { name: 'Logout' }).click();
+// });
