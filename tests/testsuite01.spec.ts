@@ -3,6 +3,10 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from './pages/loginPage.ts';
 import { DashboardPage } from './pages/dashboardPage.ts';
 import { CreateRoomPage } from './pages/createRoomPage.ts';
+import {CreateClientPage} from './pages/createClientPage.ts';
+import { CreateBillPage } from './pages/createBillPage.ts';
+import { CreateReservPage } from './pages/createReservPage.ts';
+
 
 
 test.describe('Test suite 01', () => {
@@ -13,7 +17,7 @@ test.describe('Test suite 01', () => {
 
     await loginPage.goto();
     await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`)
-    await expect(page.getByRole('heading', { name: 'Tester Hotel Overview' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
     await dashboardPage.performLogout();
     await expect(page.getByRole('heading', { name: 'Login' })).toBeVisible();
     await page.waitForTimeout(5000);
