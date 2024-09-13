@@ -8,6 +8,7 @@ export class CreateBillPage {
          readonly createBillButton : Locator;
          readonly valueInput : Locator;
          readonly isPaidCheckbox: Locator;
+         readonly editBill: Locator;
          readonly saveButton: Locator;
          readonly backButton: Locator;
        
@@ -17,6 +18,7 @@ export class CreateBillPage {
           this.createBillButton = page.getByRole('link', { name: 'Create Bill' })
           this.valueInput = page.getByRole('spinbutton')
           this.isPaidCheckbox= page.locator('.checkbox');
+          this.editBill= page.locator('div').filter({ hasText: /^ID: 1Value: 4500krPaid: No$/ }).getByRole('img')
           this.saveButton= page.getByText('Save');
           this.backButton= page.getByRole('link', { name: 'Back' })
 
@@ -40,21 +42,10 @@ async saveBill() {
   await this.saveButton.click();
 
 }
+async editingBill() {
+  await this.editBill.click();
+
+}
 
 
 };
-
-
-
-//code snippet from codegen
-
-  // await page.locator('div').filter({ hasText: /^BillsTotal: 1 \(4500kr\)Paid: 0 \(0kr\)View$/ }).getByRole('link').click();
-  // await page.getByRole('link', { name: 'Create Bill' }).click();
-  // await page.getByRole('spinbutton').click();
-
-  // await page.getByRole('spinbutton').fill('2000');
-  // await page.getByRole('spinbutton').click();
-  // await page.locator('.checkbox').click();
-  // await page.getByText('Save').click();
-  // await page.getByRole('link', { name: 'Create Bill' }).click();
-  // await page.getByRole('link', { name: 'Back' }).click();
