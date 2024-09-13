@@ -59,35 +59,10 @@ test.describe('Test suite 01', () => {
   // });
 
   //FROM HERE ON I NEED TO CHECK
-  test('Create a new client', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const dashboardPage = new DashboardPage(page);
-    const newClientPage = new CreateClientPage(page);
-
-    //navigate to login page
-    await loginPage.goto();
-    //perform the loging
-    await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`);
-    await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
-    // Navigate to the Create Room page
-    await dashboardPage.goToClients();
-    await page.waitForTimeout(2000);
-    await newClientPage.pageClientButton();
-    await page.waitForTimeout(2000);
-
-    await newClientPage.fillOutClientInfo('name', 'email', 'phone');
-    await page.waitForTimeout(2000);
-
-    await newClientPage.saveNewClient()
-    await page.waitForTimeout(2000);
-
-    
-  });
-
-  // test('Create a new Bill', async ({ page }) => {
+  // test('Create a new client', async ({ page }) => {
   //   const loginPage = new LoginPage(page);
   //   const dashboardPage = new DashboardPage(page);
-  //   const createBill = new CreateBillPage(page);
+  //   const newClientPage = new CreateClientPage(page);
 
   //   //navigate to login page
   //   await loginPage.goto();
@@ -96,9 +71,43 @@ test.describe('Test suite 01', () => {
   //   await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
   //   // Navigate to the Create Room page
   //   await dashboardPage.goToClients();
-
   //   await page.waitForTimeout(2000);
+  //   await newClientPage.pageClientButton();
+  //   await page.waitForTimeout(2000);
+
+  //   await newClientPage.fillOutClientInfo('name', 'email', 'phone');
+  //   await page.waitForTimeout(2000);
+
+  //   await newClientPage.saveNewClient()
+  //   await page.waitForTimeout(2000);
+
+  //   await dashboardPage.performLogout();
   // });
+
+  test('Create a new Bill', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    const dashboardPage = new DashboardPage(page);
+    const createBill = new CreateBillPage(page);
+
+    //navigate to login page
+    await loginPage.goto();
+    //perform the loging
+    await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`);
+    await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
+    // Navigate to the Create Room page
+    await dashboardPage.goToBills();
+    await page.waitForTimeout(2000);
+
+    await createBill.pageBillButton();
+    await page.waitForTimeout(2000);
+
+    await createBill.createBill();
+    await page.waitForTimeout(2000);
+    
+    await createBill.saveBill();
+
+
+  });
 
   // test('Create a new reservation', async ({ page }) => {
   //   const loginPage = new LoginPage(page);
