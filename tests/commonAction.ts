@@ -17,7 +17,7 @@ export class TestHelper {
   // Utility method for logging in
   async login(username: string, password: string) {
     await this.loginPage.goto();
-    await this.loginPage.performLogin(username, password);
+    await this.loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`);
     await expect(this.page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
   }
 

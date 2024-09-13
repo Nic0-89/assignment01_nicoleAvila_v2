@@ -6,21 +6,17 @@ import { CreateRoomPage } from './pages/createRoomPage.ts';
 import { CreateClientPage } from './pages/createClientPage.ts';
 import { CreateBillPage } from './pages/createBillPage.ts';
 import { CreateReservPage } from './pages/createReservPage.ts';
+import { TestHelper} from './commonAction.ts';
 
 
 test.describe('Test suite 01', () => {
   test('Log in into the app', async ({ page }) => { ////The page object is provided by Playwright and represents a browser page.
-    const loginPage = new LoginPage(page); // Creates an instance of the LoginPage class, passing the page object to it. This instance allows you to use methods defined in the LoginPage class to interact with the login page.
-    const dashboardPage = new DashboardPage(page);
+    const utility = new TestHelper(page);
 
-    //navigate to login page
-    await loginPage.goto();
-    //perform the loging
-    await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`)
-    await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
-    await dashboardPage.performLogout();
-    await expect(page.getByRole('heading', { name: 'Login' })).toBeVisible();
+    await utility.login(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`)
     await page.waitForTimeout(5000);
+
+    await utility.logout()
   });
 
 
