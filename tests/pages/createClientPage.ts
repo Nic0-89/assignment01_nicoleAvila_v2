@@ -1,4 +1,4 @@
-import { expect, type Locator, type Page } from '@playwright/test'; //NEEDS FIXES
+import { type Locator, type Page } from '@playwright/test'; //NEEDS FIXES
 import { faker } from '@faker-js/faker';
 
 export class CreateClientPage {
@@ -16,21 +16,35 @@ export class CreateClientPage {
   //constructor
   constructor(page: Page) {
     this.page = page;
-    this.createClientButton = page.locator('a[href="/rooms"]');
-    this.nameInput = page.locator('a[href="/clients"]');
-    this.phoneInput = page.locator('a[href="/bills"]');
-    this.saveButton = page.locator('a[href="/reservations"]');
-    this.backButton = page.locator('a[href="/reservations"]');
+    this.createClientButton = page.getByRole('link', { name: 'Create Client' })
+    this.nameInput = page.locator('div').filter({ hasText: /^Name$/ }).getByRole('textbox');
+    this.emailInput = page.locator('input[type="email"]');
+    this.phoneInput = page.locator('div').filter({ hasText: /^Telephone$/ }).getByRole('textbox');
+    this.saveButton = page.getByText('Save');
+    this.backButton = page.getByRole('link', { name: 'Back' });
     this.logoutButton = page.getByRole('button', { name: 'Logout' });
-
   }
 
 //Methods 
-
+async pageClientButton() {
+  await this.createClientButton.click()
 }
 
 
-  //getByRole('link', { name: 'Create Client' })
+async fillOutClientInfo(name: string, email: string, telephone: string) {
+  //pick a name at random
+const newName= faker.person.fullName();
+const newEmail= faker.internet.email();
+const newPhone= faker.phone.number();
+  // Simulate filling in the form fields with random data
+  await this.nameInput.fill(newName);
+  await this.emailInput.fill(newEmail);
+  await this.phoneInput.fill(newPhone);
+}
+
+async saveNewClient() {
+  await this.saveButton.click();
+}};
 
 
 
