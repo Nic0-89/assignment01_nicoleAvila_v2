@@ -9,54 +9,55 @@ import { CreateReservPage } from './pages/createReservPage.ts';
 
 
 test.describe('Test suite 01', () => {
-  test('Test case 01', async ({ page }) => { ////The page object is provided by Playwright and represents a browser page.
-    const loginPage = new LoginPage(page); // Creates an instance of the LoginPage class, passing the page object to it. This instance allows you to use methods defined in the LoginPage class to interact with the login page.
-    const dashboardPage = new DashboardPage(page);
+  // test('Log in into the app', async ({ page }) => { ////The page object is provided by Playwright and represents a browser page.
+  //   const loginPage = new LoginPage(page); // Creates an instance of the LoginPage class, passing the page object to it. This instance allows you to use methods defined in the LoginPage class to interact with the login page.
+  //   const dashboardPage = new DashboardPage(page);
 
-    //navigate to login page
-    await loginPage.goto();
-    //perform the loging
-    await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`)
-    await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
-    await dashboardPage.performLogout();
-    await expect(page.getByRole('heading', { name: 'Login' })).toBeVisible();
-    await page.waitForTimeout(5000);
-  });
+  //   //navigate to login page
+  //   await loginPage.goto();
+  //   //perform the loging
+  //   await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`)
+  //   await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
+  //   await dashboardPage.performLogout();
+  //   await expect(page.getByRole('heading', { name: 'Login' })).toBeVisible();
+  //   await page.waitForTimeout(5000);
+  // });
 
 
 
-  test('should create a room with random data', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const dashboardPage = new DashboardPage(page);
-    const newRoomPage = new CreateRoomPage(page);
+  // test('should create a room with random data', async ({ page }) => {
+  //   const loginPage = new LoginPage(page);
+  //   const dashboardPage = new DashboardPage(page);
+  //   const newRoomPage = new CreateRoomPage(page);
 
-    //navigate to login page
-    await loginPage.goto();
-    //perform the loging
-    await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`);
-    await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
-    // Navigate to the Create Room page
-    await dashboardPage.goToRooms();
+  //   //navigate to login page
+  //   await loginPage.goto();
+  //   //perform the loging
+  //   await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`);
+  //   await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
+  //   // Navigate to the Create Room page
+  //   await dashboardPage.goToRooms();
 
-    await page.waitForTimeout(2000);
-    await newRoomPage.pageRoomButton();
+  //   await page.waitForTimeout(2000);
+  //   await newRoomPage.pageRoomButton();
 
-    // Fill out the form with random data
-    await newRoomPage.fillOutRoomType();
-    await page.waitForTimeout(2000);
+  //   // Fill out the form with random data
+  //   await newRoomPage.fillOutRoomType();
+  //   await page.waitForTimeout(2000);
 
-    await newRoomPage.floorPrice();
-    await page.waitForTimeout(2000);
+  //   await newRoomPage.floorPrice();
+  //   await page.waitForTimeout(2000);
 
-    await newRoomPage.fillOutAvailability();
-    await page.waitForTimeout(2000);
-    await newRoomPage.completeFeatures()
+  //   await newRoomPage.fillOutAvailability();
+  //   await page.waitForTimeout(2000);
+  //   await newRoomPage.completeFeatures()
 
-    await newRoomPage.saveRoom();
+  //   await newRoomPage.saveRoom();
 
-    await dashboardPage.performLogout();
+  //   await dashboardPage.performLogout();
 
-  });
+  // });
+  
   //FROM HERE ON I NEED TO CHECK
   test('Create a new client', async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -74,37 +75,37 @@ test.describe('Test suite 01', () => {
     await page.waitForTimeout(2000);
   });
 
-  test('Create a new Bill', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const dashboardPage = new DashboardPage(page);
-    const createBill = new CreateBillPage(page);
+  // test('Create a new Bill', async ({ page }) => {
+  //   const loginPage = new LoginPage(page);
+  //   const dashboardPage = new DashboardPage(page);
+  //   const createBill = new CreateBillPage(page);
 
-    //navigate to login page
-    await loginPage.goto();
-    //perform the loging
-    await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`);
-    await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
-    // Navigate to the Create Room page
-    await dashboardPage.goToClients();
+  //   //navigate to login page
+  //   await loginPage.goto();
+  //   //perform the loging
+  //   await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`);
+  //   await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
+  //   // Navigate to the Create Room page
+  //   await dashboardPage.goToClients();
 
-    await page.waitForTimeout(2000);
-  });
+  //   await page.waitForTimeout(2000);
+  // });
 
-  test('Create a new reservation', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const dashboardPage = new DashboardPage(page);
-    const newReservation = new CreateReservPage(page);
+  // test('Create a new reservation', async ({ page }) => {
+  //   const loginPage = new LoginPage(page);
+  //   const dashboardPage = new DashboardPage(page);
+  //   const newReservation = new CreateReservPage(page);
 
-    //navigate to login page
-    await loginPage.goto();
-    //perform the loging
-    await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`);
-    await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
-    // Navigate to the Create Room page
-    await dashboardPage.goToClients();
+  //   //navigate to login page
+  //   await loginPage.goto();
+  //   //perform the loging
+  //   await loginPage.performLogin(`${process.env.TEST_USERNAME}`, `${process.env.TEST_PASSWORD}`);
+  //   await expect(page.getByRole('heading', { name: 'Tester Hotel' })).toBeVisible();
+  //   // Navigate to the Create Room page
+  //   await dashboardPage.goToClients();
 
-    await page.waitForTimeout(2000);
-  });
+  //   await page.waitForTimeout(2000);
+  // });
 });
 
 

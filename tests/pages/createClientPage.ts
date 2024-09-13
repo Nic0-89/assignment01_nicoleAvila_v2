@@ -1,31 +1,36 @@
 import { expect, type Locator, type Page } from '@playwright/test'; //NEEDS FIXES
+import { faker } from '@faker-js/faker';
 
 export class CreateClientPage {
     // class content
   //Attributes
   readonly page: Page;
-  readonly roomButton: Locator;
-  readonly clientButton: Locator;
-  readonly billButton: Locator;
-  readonly reservationButton: Locator;
+  readonly createClientButton: Locator;
+  readonly nameInput: Locator;
+  readonly emailInput: Locator;
+  readonly phoneInput: Locator;
+  readonly saveButton: Locator;
+  readonly backButton: Locator;
   readonly logoutButton: Locator;
 
   //constructor
   constructor(page: Page) {
     this.page = page;
-    this.roomButton = page.locator('a[href="/rooms"]');
-    this.clientButton = page.locator('a[href="/clients"]');
-    this.billButton = page.locator('a[href="/bills"]');
-    this.reservationButton = page.locator('a[href="/reservations"]');
-
+    this.createClientButton = page.locator('a[href="/rooms"]');
+    this.nameInput = page.locator('a[href="/clients"]');
+    this.phoneInput = page.locator('a[href="/bills"]');
+    this.saveButton = page.locator('a[href="/reservations"]');
+    this.backButton = page.locator('a[href="/reservations"]');
     this.logoutButton = page.getByRole('button', { name: 'Logout' });
 
   }
 
-  }
+//Methods 
+
+}
 
 
-
+  //getByRole('link', { name: 'Create Client' })
 
 
 
